@@ -32,3 +32,6 @@ Ideas would be to support:
 You can either do it your own way, or look up how I converted it for the DevExpress style and just change the key points to your own style.
 Also, the code structure is pure evil. If you feel like it, you can clean up and refactor the code as you want (I used just code-behind and everythign is in there  currently. Ugly, dirty but i needed the tool done quickly - sorry 'bout that)
 Before contributing your own awesome implementations, you might want to clean it all up, as long as it's not too late. If I will add moer converters, I definetly will be up to that bothersome task of refactoring.
+
+Used Libraries:
+- Ookii.Dialogs.Wpf (NuGet)
