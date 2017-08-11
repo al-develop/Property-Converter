@@ -14,6 +14,11 @@ This style shown here, is the style the library DevExpress.Mvvm (available for f
 You can save the output directly to your clipboard or save it to a cs file. 
 It is also supported to enter a bunch of properties (separated by line) and convert them all in one go.
 
+
+![preview](https://github.com/al-develop/Property-Converter/blob/master/propconverter.png)
+
+
+
 # For Developers - What can I do to contribute?
 It would be good to have more options on the Mvvm Styles
 Ideas would be to support:
