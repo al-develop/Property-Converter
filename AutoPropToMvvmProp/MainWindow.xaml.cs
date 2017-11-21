@@ -34,7 +34,8 @@ namespace AutoPropToMvvmProp
         {
             var mvvmStyles = new List<string>()
             {
-                "DevExpress"
+                "DevExpress",
+                "MVVM Light"
             };
             this.cbxStyles.ItemsSource = null;
             this.cbxStyles.ItemsSource = mvvmStyles;
@@ -63,6 +64,10 @@ namespace AutoPropToMvvmProp
                     ConvertToDXProperty(line);
                     break;
 
+                case "mvvm light":
+                    ConvertToLightProperty(line);
+                    break;
+
                 default:
                     return;
             }
@@ -85,6 +90,32 @@ namespace AutoPropToMvvmProp
 
                 string getter = $"get {{ return {backingFieldName}; }}";
                 string setter = $"set {{ SetProperty(ref {backingFieldName}, value, () => {propertyName}); }}";
+
+                string dxProperty = $"{backingField}\npublic {propertyType} {propertyName}\n{{\n{getter}\n{setter}\n}}";
+                convertedProperties.AppendLine(dxProperty);
+            }
+            catch (Exception ex)
+            {
+                return;
+            }
+        }
+
+        private void ConvertToLightProperty(string line)
+        {
+            if (String.IsNullOrEmpty(line))
+                return;
+
+            try
+            {
+                line = line.TrimStart(' ');
+                string[] splittedLine = line.Split(' ');
+                string propertyName = splittedLine.ElementAt(2);
+                string propertyType = splittedLine.ElementAt(1);
+                string backingFieldName = $"_{propertyName.ToLower()}";
+                string backingField = $"private {propertyType} {backingFieldName};";
+
+                string getter = $"get {{ return {backingFieldName}; }}";
+                string setter = $"set {{ {backingFieldName} = value;\nRaisePropertyChanged(() => {propertyName}); }}";
 
                 string dxProperty = $"{backingField}\npublic {propertyType} {propertyName}\n{{\n{getter}\n{setter}\n}}";
                 convertedProperties.AppendLine(dxProperty);

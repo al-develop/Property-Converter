@@ -36,7 +36,7 @@
                  Grid.Column="2" />
         <Button x:Name="btnDo"
                 Background="WhiteSmoke"
-                Content="Do"
+                Content="Convert"
                 HorizontalAlignment="Right"
                 Margin="0,4,7,0"
                 Grid.Row="1"
