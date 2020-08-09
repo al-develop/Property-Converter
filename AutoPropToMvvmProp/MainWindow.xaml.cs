@@ -4,16 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace AutoPropToMvvmProp
 {
@@ -157,7 +148,7 @@ namespace AutoPropToMvvmProp
                 string getter = $"get {{ return {backingFieldName}; }}";
                 string setter = $"set {{ SetProperty(ref {backingFieldName}, value, () => {propertyName}); }}";
 
-                string dxProperty = $"{backingField}\npublic {propertyType} {propertyName}\n{{\n{getter}\n{setter}\n}}";
+                string dxProperty = $"{backingField}\npublic {propertyType} {propertyName}\n{{\n{getter}\n{setter}\n}}\n";
                 convertedProperties.AppendLine(dxProperty);
             }
             catch (Exception ex)
